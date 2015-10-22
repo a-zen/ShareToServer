@@ -18,4 +18,7 @@
 
     <string name="pref_ringtone_silent">Silent</string>
 
+    <!-- Menu Actions -->
+    <string name="action_settings">Settings</string>
+
 </resources>
