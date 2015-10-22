@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ShareToServer</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_https_switch">Enable secure communication with host</string>
+    <string name="pref_description_https_switch">Use HTTPS to connect to host</string>
+
+    <string name="pref_title_host">Hostname</string>
+    <string name="pref_default_host">localhost</string>
+
+    <string name="pref_title_url_path">URL-Path</string>
+    <string name="pref_default_url_path">/shares</string>
+
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <!-- Menu Actions -->
+    <string name="action_settings">Settings</string>
+
+</resources>
