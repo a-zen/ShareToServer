@@ -24,6 +24,10 @@
                 android:value="a_zen.sharetoserver.MainActivity" />
         </activity>
         <activity android:name=".SendSharedMessageActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
         </activity>
     </application>
 
