@@ -13,6 +13,9 @@
     <string name="pref_title_host">Hostname</string>
     <string name="pref_default_host">localhost</string>
 
+    <string name="pref_title_url_path">URL-Path</string>
+    <string name="pref_default_url_path">/shares</string>
+
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
