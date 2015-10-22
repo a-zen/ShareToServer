@@ -23,6 +23,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="a_zen.sharetoserver.MainActivity" />
         </activity>
+        <activity android:name=".SendSharedMessageActivity" >
+        </activity>
     </application>
 
 </manifest>
