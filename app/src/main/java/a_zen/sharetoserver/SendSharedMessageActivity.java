@@ -49,7 +49,7 @@ public class SendSharedMessageActivity extends AppCompatActivity {
         */
 
         messagePackage = new MessagePackage(buildUrl(), sharedMessage);
-        new AsyncHTTPService().execute(messagePackage);
+        new AsyncHTTPService(this).execute(messagePackage);
         finish();
     }
 
@@ -62,13 +62,13 @@ public class SendSharedMessageActivity extends AppCompatActivity {
         boolean httpsSwitch = sharedPref.getBoolean("https_switch", true);
 
         if(httpsSwitch == true) {
-           urlString.append("@string/https_protocol_string");
+           urlString.append(getResources().getString(R.string.https_protocol_string));
         } else {
-            urlString.append("@string/http_protocol_string");
+            urlString.append(getResources().getString(R.string.http_protocol_string));
         }
 
         urlString.append(sharedPref.getString("host_text", "@string/pref_default_host"));
-        urlString.append(sharedPref.getString("host_text", "@string/pref_default_url_path"));
+        urlString.append(sharedPref.getString("url_path_text", "@string/pref_default_url_path"));
 
         try {
             url = new URL(urlString.toString());
