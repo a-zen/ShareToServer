@@ -1,6 +1,9 @@
 package a_zen.sharetoserver.helper;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -8,13 +11,22 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
+import a_zen.sharetoserver.MainActivity;
 import a_zen.sharetoserver.MessagePackage;
+import a_zen.sharetoserver.R;
+import a_zen.sharetoserver.SendSharedMessageActivity;
 
 /**
  * @author a-zen
  */
 
 public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
+
+    private Context context;
+
+    public AsyncHTTPService(Context context) {
+        this.context = context;
+    }
 
     @Override
     protected Integer doInBackground(MessagePackage... packages) {
@@ -24,6 +36,7 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
         HttpURLConnection urlConnection = null;
         try {
             urlConnection = (HttpURLConnection) packages[0].getUrl().openConnection();
+
             urlConnection.setDoOutput(true);
             urlConnection.setChunkedStreamingMode(0);
 
@@ -41,4 +54,15 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
 
         return responseCode;
     }
+
+    protected void onPostExecute(int responseCode) {
+
+        // Error
+        if(responseCode < 200 || responseCode > 300) {
+            Toast.makeText(context, "fail", Toast.LENGTH_LONG).show();
+            /*Resources res = context.getResources();
+            res.getString(R.string.api_call_error), responseCode); */
+        }
+    }
+
 }
