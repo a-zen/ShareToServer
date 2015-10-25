@@ -1,7 +1,6 @@
 package a_zen.sharetoserver.helper;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -12,10 +11,8 @@ import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 
-import a_zen.sharetoserver.MainActivity;
 import a_zen.sharetoserver.MessagePackage;
 import a_zen.sharetoserver.R;
-import a_zen.sharetoserver.SendSharedMessageActivity;
 
 /**
  * @author a-zen
@@ -23,7 +20,10 @@ import a_zen.sharetoserver.SendSharedMessageActivity;
 
 public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
 
-    private Context context;
+    private static final String contentType = "Content-Type";
+    private static final String jsonType = "application/json; charset=utf-8";
+
+    private final Context context;
 
     public AsyncHTTPService(Context context) {
         this.context = context;
@@ -33,18 +33,19 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
     protected Integer doInBackground(MessagePackage... packages) {
 
         Integer responseCode = 0;
+        final byte[] messageAsBytes = packages[0].getMessage().getBytes();
 
         HttpURLConnection urlConnection = null;
         try {
             urlConnection = (HttpURLConnection) packages[0].getUrl().openConnection();
 
             urlConnection.setDoOutput(true);
-            urlConnection.setChunkedStreamingMode(0);
+            urlConnection.setFixedLengthStreamingMode(messageAsBytes.length);
+            urlConnection.setRequestProperty(contentType, jsonType);
 
             OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-            ObjectOutputStream oos = new ObjectOutputStream(out);
-            oos.writeUTF(packages[0].getMessage());
-            oos.close();
+            out.write(messageAsBytes);
+            out.close();
 
             responseCode = urlConnection.getResponseCode();
         } catch (ConnectException e) {
