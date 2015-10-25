@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.JsonWriter;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -48,9 +51,24 @@ public class SendSharedMessageActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
         */
 
-        messagePackage = new MessagePackage(buildUrl(), sharedMessage);
+        messagePackage = new MessagePackage(buildUrl(), convertMessageToJSON());
         new AsyncHTTPService(this).execute(messagePackage);
         finish();
+    }
+
+    private String convertMessageToJSON() {
+
+        StringWriter sWriter = new StringWriter();
+        JsonWriter jWriter = new JsonWriter(sWriter);
+        try {
+            jWriter.beginObject();
+            jWriter.name("data").value(sharedMessage);
+            jWriter.endObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sWriter.toString();
     }
 
     private URL buildUrl() {
