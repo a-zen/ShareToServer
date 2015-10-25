@@ -31,7 +31,7 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
     @Override
     protected Integer doInBackground(MessagePackage... packages) {
 
-        int responseCode = 0;
+        Integer responseCode = 0;
 
         HttpURLConnection urlConnection = null;
         try {
@@ -55,7 +55,8 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
         return responseCode;
     }
 
-    protected void onPostExecute(int responseCode) {
+    @Override
+    protected void onPostExecute(Integer responseCode) {
 
         // Error
         if(responseCode < 200 || responseCode > 300) {
