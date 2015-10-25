@@ -7,6 +7,8 @@
 
     <string name="api_call_error">API Call failed with: %1$d</string>
 
+    <string name="connection_failed">Connection to configured host failed</string>
+
     <!-- Strings related to Settings -->
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>

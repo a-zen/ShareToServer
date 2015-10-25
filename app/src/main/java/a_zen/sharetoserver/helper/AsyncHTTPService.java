@@ -61,10 +61,10 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
     @Override
     protected void onPostExecute(Integer responseCode) {
 
-        // Error
+        // Error handling
         if(responseCode == -1) {
             Toast.makeText(context,
-                    "Connection to configured host failed",
+                    context.getResources().getString(R.string.connection_failed),
                     Toast.LENGTH_LONG).show();
         } else if(responseCode < 200 || responseCode > 300) {
             Toast.makeText(context,
