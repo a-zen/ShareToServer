@@ -60,9 +60,9 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
 
         // Error
         if(responseCode < 200 || responseCode > 300) {
-            Toast.makeText(context, "fail", Toast.LENGTH_LONG).show();
-            /*Resources res = context.getResources();
-            res.getString(R.string.api_call_error), responseCode); */
+            Toast.makeText(context,
+                    context.getResources().getString(R.string.api_call_error, responseCode),
+                    Toast.LENGTH_LONG).show();
         }
     }
 
