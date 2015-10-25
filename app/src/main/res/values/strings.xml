@@ -2,8 +2,10 @@
     <string name="app_name">ShareToServer</string>
     <string name="title_activity_settings">Settings</string>
 
-    <!-- Strings related to Settings -->
+    <string name="http_protocol_string">http://</string>
+    <string name="https_protocol_string">https://</string>
 
+    <!-- Strings related to Settings -->
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 
