@@ -9,6 +9,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 
 import a_zen.sharetoserver.MainActivity;
@@ -46,6 +47,8 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
             oos.close();
 
             responseCode = urlConnection.getResponseCode();
+        } catch (ConnectException e) {
+            responseCode = -1;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -59,7 +62,11 @@ public class AsyncHTTPService extends AsyncTask<MessagePackage, Void, Integer> {
     protected void onPostExecute(Integer responseCode) {
 
         // Error
-        if(responseCode < 200 || responseCode > 300) {
+        if(responseCode == -1) {
+            Toast.makeText(context,
+                    "Connection to configured host failed",
+                    Toast.LENGTH_LONG).show();
+        } else if(responseCode < 200 || responseCode > 300) {
             Toast.makeText(context,
                     context.getResources().getString(R.string.api_call_error, responseCode),
                     Toast.LENGTH_LONG).show();
