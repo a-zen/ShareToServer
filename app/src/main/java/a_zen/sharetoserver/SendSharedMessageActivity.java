@@ -68,6 +68,8 @@ public class SendSharedMessageActivity extends AppCompatActivity {
         }
 
         urlString.append(sharedPref.getString("host_text", "@string/pref_default_host"));
+        urlString.append(":");
+        urlString.append(sharedPref.getString("port_text", "@string/pref_default_port"));
         urlString.append(sharedPref.getString("url_path_text", "@string/pref_default_url_path"));
 
         try {

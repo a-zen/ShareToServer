@@ -17,6 +17,9 @@
     <string name="pref_title_host">Hostname</string>
     <string name="pref_default_host">localhost</string>
 
+    <string name="pref_title_port">Port</string>
+    <string name="pref_default_port">80</string>
+
     <string name="pref_title_url_path">URL-Path</string>
     <string name="pref_default_url_path">/shares</string>
 
