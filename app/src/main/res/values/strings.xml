@@ -5,6 +5,8 @@
     <string name="http_protocol_string">http://</string>
     <string name="https_protocol_string">https://</string>
 
+    <string name="api_call_error">API Call failed with: %2$d//</string>
+
     <!-- Strings related to Settings -->
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
